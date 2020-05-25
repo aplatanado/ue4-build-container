@@ -10,7 +10,7 @@ set -e
 
 CONTAINER_TAG=ue4
 BUILD_ARGS=
-WORKING_DIR="${1:-$PWD/build}"
+WORKING_DIR="${1:-$(dirname ${BASH_SOURCE[0]})/build}"
 
 if [ -n "$UNREAL_ENGINE_VERSION" ]; then
     CONTAINER_TAG="${CONTAINER_TAG}:$UNREAL_ENGINE_VERSION"
