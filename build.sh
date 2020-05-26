@@ -8,12 +8,12 @@
 
 set -e
 
-CONTAINER_TAG=ue4
+IMAGE_TAG=ue4
 BUILD_ARGS=
 WORKING_DIR="${1:-$(dirname ${BASH_SOURCE[0]})/build}"
 
 if [ -n "$UNREAL_ENGINE_VERSION" ]; then
-    CONTAINER_TAG="${CONTAINER_TAG}:$UNREAL_ENGINE_VERSION"
+    IMAGE_TAG="${CONTAINER_TAG}:$UNREAL_ENGINE_VERSION"
     BUILD_ARGS="$BUILD_ARGS --build-arg UNREAL_ENGINE_VERSION=$UNREAL_ENGINE_VERSION"
 fi
 
@@ -30,6 +30,6 @@ fi
 
 mkdir -p "$WORKING_DIR"
 podman build \
-    --tag $CONTAINER_TAG \
+    --tag $IMAGE_TAG \
     --volume "$WORKING_DIR":/build \
     $BUILD_ARGS .
